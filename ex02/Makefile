@@ -1,8 +1,8 @@
-NAME    = ex01
+NAME    = ex02
 
-CC = c++ -Wall -Werror -Wextra -std=c++98 -g
+CC = c++ -Wall -Werror -Wextra -std=c++98
 
-SRC     =  Span.hpp Span.cpp main.cpp
+SRC     = main.cpp
 
 all:    $(NAME)
 
