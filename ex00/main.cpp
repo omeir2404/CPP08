@@ -22,25 +22,32 @@ void testElementExists() {
 }
 
 void testElementDoesNotExist() {
-
     int arr1[] = {1, 2, 3, 4, 5};
     std::vector<int> numbers(arr1, arr1 + 5);
     int target = 6;
-    std::vector<int>::iterator result = easyfind(numbers, target);
-    assertTest(result == numbers.end(), "testElementDoesNotExist", "Element should not exist");
+    try {
+        std::vector<int>::iterator result = easyfind(numbers, target);
+        assertTest(result == numbers.end(), "testElementDoesNotExist", "Element should not exist");
+    } catch (const std::runtime_error &e) {
+        assertTest(true, "testElementDoesNotExist", e.what());
+    }
 }
 
 void testElementExistsInEmptyVector() {
     std::vector<int> emptyVector;
     int target = 10;
-    std::vector<int>::iterator result = easyfind(emptyVector, target);
-    assertTest(result == emptyVector.end(), "testElementExistsInEmptyVector", "Empty vector should not contain any elements");
+    try {
+        std::vector<int>::iterator result = easyfind(emptyVector, target);
+        assertTest(result == emptyVector.end(), "testElementExistsInEmptyVector", "Empty vector should not contain any elements");
+    } catch (const std::runtime_error &e) {
+        assertTest(true, "testElementExistsInEmptyVector", e.what());
+    }
 }
 
 int main() {
     testElementExists();
     //either of these two below will fail and throw an exception
-    // testElementDoesNotExist();
-    // testElementExistsInEmptyVector();
+    testElementDoesNotExist();
+    testElementExistsInEmptyVector();
     return 0;
 }
